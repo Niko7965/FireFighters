@@ -13,16 +13,22 @@ ControlDevice gpad;
 
 class Fighter{
   
+  
+  float r,g,b;
+  int playerNumber;
   float p1LeftX, p1LeftY, p2LeftX, p2RightX, p2RightY;
   boolean p1A, p1X, p1Y, p1B, p1Block;
   PVector gravity = new PVector(0,2);
   PVector location;
   PVector velocity;
   
-  Fighter(float x, float y){   
-    
-  location = new PVector(x,y);
-  velocity = new PVector(0,0); 
+  Fighter(float x, float y,float r, float g, float b, int n){   
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    playerNumber = n;
+    location = new PVector(x,y);
+    velocity = new PVector(0,0); 
   
 }
 
@@ -31,25 +37,48 @@ class Fighter{
 void playerDraw(){
   getUserInput();
   moveCheck();
-  display(player1.location.x,player1.location.y,0,255,0);
+  display(location.x,location.y,r,g,b);
   
   
 }
 
 public void getUserInput(){
-  p1LeftX = map(gpad.getSlider("P1XStick").getValue(), -1, 1,-10, 10);
-  p1LeftY = map(gpad.getSlider("P1YStick").getValue(), -1, 1,-10, 10);
-  p1A = gpad.getButton("P1A").pressed();
-  p1B = gpad.getButton("P1B").pressed();
-  p1Y = gpad.getButton("P1Y").pressed();
-  p1X = gpad.getButton("P1X").pressed();
-  if (gpad.getSlider("R2").getValue() > -0.2){
-    p1Block = true;
+  if (playerNumber == 1){
+    p1LeftX = map(gpad.getSlider("P1XStick").getValue(), -1, 1,-10, 10);
+    p1LeftY = map(gpad.getSlider("P1YStick").getValue(), -1, 1,-10, 10);
+    p1A = gpad.getButton("P1A").pressed();
+    p1B = gpad.getButton("P1B").pressed();
+    p1Y = gpad.getButton("P1Y").pressed();
+    p1X = gpad.getButton("P1X").pressed();
+    if (gpad.getSlider("P1R2").getValue() > -0.2){
+      p1Block = true;
+    }
+    else{
+      p1Block = false;
+    } 
   }
-  else{
-    p1Block = false;
-  } 
+
+
+ if (playerNumber == 2){
+    p1LeftX = map(gpad.getSlider("P2XStick").getValue(), -1, 1,-10, 10);
+    p1LeftY = map(gpad.getSlider("P2YStick").getValue(), -1, 1,-10, 10);
+    p1A = gpad.getButton("P2A").pressed();
+    p1B = gpad.getButton("P2B").pressed();
+    p1Y = gpad.getButton("P2Y").pressed();
+    p1X = gpad.getButton("P2X").pressed();
+    if (gpad.getSlider("P2R2").getValue() > -0.2){
+      p1Block = true;
+    }
+    else{
+      p1Block = false;
+    } 
+  }
 }
+
+
+
+
+
 
 public void moveCheck(){
   velocity.x = p1LeftX;
@@ -63,52 +92,61 @@ public void moveCheck(){
     velocity.x = 0;
   }
   
+  //Adds velocity to location
   location.add(velocity);
+  
+  //Adds gravity to velocity, if the player is not already on the ground
   if(location.y < 800){
     velocity.add(gravity);
-    println("GravityApplied");
+    
   }
   else{
     location.y = 800;
   }
   
   
+  
+  
   if(p1A == true){
     jump();
-    
   }
+  
   if(p1B == true){
     powerAttack();
   }
+  
   if(p1X == true){
     quickAttack();
   }
+  
   if(p1Y == true){
     rangedAttack();
   }
   
-  //KeyboardControlls
-if (keyPressed == true) {
-  if (key == CODED) {
-    if (keyCode == RIGHT){
-    
-  player1.velocity.x = 2;
-    } else { if (keyCode == LEFT)
-  player1.velocity.x = -2;
-      
-    }
-  }
-}
+  
+  
+  
+  //KeyboardControls, currently not working
+  if (keyPressed == true) {
+    if (key == CODED) {
+      if (keyCode == RIGHT){ 
+        velocity.x = 8;
+        
+      }
+      if (keyCode == LEFT){
+       
+        velocity.x = -8;        
+      }  
+     }
+   }
   
 }
-
-
 
 void jump(){
   println(velocity.y);
   if(location.y > 795){
     velocity.add(0,-50);
-    print("Jumpin");
+    
   }  
 }
 
@@ -128,9 +166,9 @@ void rangedAttack(){
 
 
 
-void display(float x, float y, float R, float G, float B){
+void display(float x, float y, float r, float g, float b){
   stroke(0);
-  fill(R,G,B);
+  fill(r,g,b);
   rectMode(CENTER);
   rect(x,y,100,-240);
 }
