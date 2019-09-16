@@ -16,8 +16,8 @@ class Fighter{
   
   float r,g,b;
   int playerNumber;
-  float p1LeftX, p1LeftY, p2LeftX, p2RightX, p2RightY;
-  boolean p1A, p1X, p1Y, p1B, p1Block;
+  float LeftX, LeftY;
+  boolean A, X, Y, B, Block;
   PVector gravity = new PVector(0,2);
   PVector location;
   PVector velocity;
@@ -44,35 +44,37 @@ void playerDraw(){
 
 public void getUserInput(){
   if (playerNumber == 1){
-    p1LeftX = map(gpad.getSlider("P1XStick").getValue(), -1, 1,-10, 10);
-    p1LeftY = map(gpad.getSlider("P1YStick").getValue(), -1, 1,-10, 10);
-    p1A = gpad.getButton("P1A").pressed();
-    p1B = gpad.getButton("P1B").pressed();
-    p1Y = gpad.getButton("P1Y").pressed();
-    p1X = gpad.getButton("P1X").pressed();
+    LeftX = map(gpad.getSlider("P1XStick").getValue(), -1, 1,-10, 10);
+    LeftY = map(gpad.getSlider("P1YStick").getValue(), -1, 1,-10, 10);
+    A = gpad.getButton("P1A").pressed();
+    B = gpad.getButton("P1B").pressed();
+    Y = gpad.getButton("P1Y").pressed();
+    X = gpad.getButton("P1X").pressed();
     if (gpad.getSlider("P1R2").getValue() > -0.2){
-      p1Block = true;
+      Block = true;
     }
     else{
-      p1Block = false;
+      Block = false;
     } 
   }
 
 
- if (playerNumber == 2){
-    p1LeftX = map(gpad.getSlider("P2XStick").getValue(), -1, 1,-10, 10);
-    p1LeftY = map(gpad.getSlider("P2YStick").getValue(), -1, 1,-10, 10);
-    p1A = gpad.getButton("P2A").pressed();
-    p1B = gpad.getButton("P2B").pressed();
-    p1Y = gpad.getButton("P2Y").pressed();
-    p1X = gpad.getButton("P2X").pressed();
+ /*if (playerNumber == 2){
+    LeftX = map(gpad.getSlider("P2XStick").getValue(), -1, 1,-10, 10);
+    LeftY = map(gpad.getSlider("P2YStick").getValue(), -1, 1,-10, 10);
+    A = gpad.getButton("P2A").pressed();
+    B = gpad.getButton("P2B").pressed();
+    Y = gpad.getButton("P2Y").pressed();
+    X = gpad.getButton("P2X").pressed();
     if (gpad.getSlider("P2R2").getValue() > -0.2){
-      p1Block = true;
+      Block = true;
     }
     else{
-      p1Block = false;
+      Block = false;
     } 
   }
+  
+  */
 }
 
 
@@ -81,7 +83,7 @@ public void getUserInput(){
 
 
 public void moveCheck(){
-  velocity.x = p1LeftX;
+  velocity.x = LeftX;
   if(location.x>width && velocity.x > 0){
     velocity.x = 0;
   }
@@ -107,19 +109,19 @@ public void moveCheck(){
   
   
   
-  if(p1A == true){
+  if(A == true){
     jump();
   }
   
-  if(p1B == true){
+  if(B == true){
     powerAttack();
   }
   
-  if(p1X == true){
+  if(X == true){
     quickAttack();
   }
   
-  if(p1Y == true){
+  if(Y == true){
     rangedAttack();
   }
   
@@ -161,8 +163,6 @@ void quickAttack(){
 void rangedAttack(){
 
 }
-
-
 
 
 
