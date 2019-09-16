@@ -1,40 +1,40 @@
+
+
+
 float R;
 float G;
 float B;
+Fighter player1;
 
-
-
-Fighter fighter = new Fighter(200,450);
 
 void setup(){
   background(255);
-  size(1280,720);
+  size(1920,1080);
+  player1 = new Fighter(200,800);
+  controlInitialize();
 }
 
 void draw(){
+  
+  
+  
   
  //Background
  background(255);
  rectMode(CORNER);
  fill(120);
- rect(0,570,1280,200);
+ rect(0,900,1920,1080);
 
-//Foghter 1 controls
-if (keyPressed == true) {
-  if (key == CODED) {
-    if (keyCode == RIGHT){
-    
-  fighter.velocity.x = 2;
-    } else { if (keyCode == LEFT)
-  fighter.velocity.x = -2;
-      
-    }
-  }
+ player1.playerDraw();
+
 }
 
-fighter.display(fighter.velocity.x,fighter.velocity.y,0,255,0);
 
-
-
-
+void controlInitialize(){
+  control = ControlIO.getInstance(this);
+  gpad = control.getMatchedDevice("Player1Controller");
+  if(gpad == null){
+    println("No suitable device configured");
+    System.exit(-1);
+  } 
 }
