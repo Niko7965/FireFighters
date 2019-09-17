@@ -61,7 +61,7 @@ void controlInitialize(){
 
        }
      }
-   }
+   
 
    void keyReleased(){
 
@@ -92,4 +92,4 @@ void controlInitialize(){
           }
 
       }
-    }
+    

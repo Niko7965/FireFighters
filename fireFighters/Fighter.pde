@@ -6,12 +6,16 @@ ControlIO control;
 Configuration config;
 ControlDevice gpad;
 
-int movementSpeed = 10;
+
 
 
 
 
 class Fighter{
+  int movementSpeed = 10;
+  int fighterHeight = 240;
+  int fighterWidth = 100;
+  int hp = 255;
   float r,g,b;
   int playerNumber;
   float LeftX, LeftY;
@@ -99,8 +103,6 @@ public void moveCheck(){
   }
 
 
-
-
   if(A == true){
     jump();
   }
@@ -111,6 +113,26 @@ public void moveCheck(){
 
   if(X == true){
     quickAttack();
+    rectMode(CENTER);
+    fill(0,0,100);
+    int qAWidth = 100;
+    int qAHeight = 20;
+    if(playerNumber == 1){
+      rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
+      if(location.x+2*qAWidth>player2.location.x){
+        println("p2 hit");
+        player2.location.x += 5;
+      }
+
+    }
+    if(playerNumber == 2){
+      rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
+      if(location.x-2*qAWidth<player1.location.x){
+        println("p2 hit");
+        player1.location.x -= 5;
+
+      }
+    }
   }
 
   if(Y == true){
@@ -130,6 +152,7 @@ void jump(){
 
 void powerAttack(){
 
+
 }
 
 void quickAttack(){
@@ -146,75 +169,9 @@ void rangedAttack(){
     stroke(0);
     fill(r,g,b);
     rectMode(CENTER);
-    rect(x,y,100,-240);
+    rect(x,y,fighterWidth,fighterHeight);
   }
 
-  void keyPressed(){
 
-    if (playerNumber == 2){
-
-
-
-
-         if(key =='a' || key =='A'){
-           Left = true;
-           Right = false;
-           print("hithere");
-         }
-         if(key =='d' || key =='D'){
-           Left = false;
-           Right = true;
-           print("r");
-         }
-         if(key =='w' || key =='W'){
-           A = true;
-         }
-         if(key =='j' || key =='J'){
-           X = true;
-         }
-         if(key =='k' || key =='K'){
-           B = true;
-         }
-         if(key =='l' || key =='L'){
-           Y = true;
-         }
-         if(key ==' '){
-           Block = true;
-
-         }
-       }
-     }
-
-     void keyReleased(){
-
-       if (playerNumber == 2){
-
-
-            if(key =='a' || key =='A'){
-              Left = false;
-
-            }
-            if(key =='d' || key =='D'){
-              Right = false;
-            }
-            if(key =='w' || key =='W'){
-              A = false;
-            }
-            if(key =='j' || key =='J'){
-              X = false;
-            }
-            if(key =='k' || key =='K'){
-              B = false;
-            }
-            if(key =='l' || key =='L'){
-              Y = false;
-            }
-            if(key ==' '){
-              Block = false;
-
-            }
-
-        }
-      }
 
  }
