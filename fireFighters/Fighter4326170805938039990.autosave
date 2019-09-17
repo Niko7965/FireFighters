@@ -84,7 +84,7 @@ public void moveCheck(){
     velocity.x = 0;
     if(Left == true){
       if(playerNumber ==2){
-        if(location.x-(fighterWidth)>player1.location.x){
+        if(location.x-(fighterWidth*2)>player1.location.x){
           velocity.x += -1*movementSpeed;
         }
       }
@@ -93,15 +93,15 @@ public void moveCheck(){
       }
       }
 
-
+    }
     if(Right == true){
       if(playerNumber ==1){
-        if(location.x+(fighterWidth)<player2.location.x){
-          velocity.x += movementSpeed;
+        if(location.x+(fighterWidth*2)<player1.location.x){
+          velocity.x += -1*movementSpeed;
         }
       }
       if(playerNumber==2){
-        velocity.x += movementSpeed;
+        velocity.x += -1*movementSpeed;
       }
 
     }
@@ -189,4 +189,6 @@ void rangedAttack(){
     rect(x,y,fighterWidth,fighterHeight);
   }
 
-}
+
+
+ }

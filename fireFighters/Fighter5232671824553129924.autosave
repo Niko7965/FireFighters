@@ -81,79 +81,54 @@ public void getUserInput(){
 
 
 public void moveCheck(){
-    velocity.x = 0;
-    if(Left == true){
-      if(playerNumber ==2){
-        if(location.x-(fighterWidth)>player1.location.x){
-          velocity.x += -1*movementSpeed;
-        }
+  velocity.x = 0;
+  if(Left == true){
+    if(playerNumber ==2){
+      if(location.x-(fighterWidth*2)>player1.location){
+        velocity.x += -1*movementSpeed;
       }
-      if(playerNumber==1){
-          velocity.x += -1*movementSpeed;
-      }
-      }
-
-
-    if(Right == true){
-      if(playerNumber ==1){
-        if(location.x+(fighterWidth)<player2.location.x){
-          velocity.x += movementSpeed;
-        }
-      }
-      if(playerNumber==2){
-        velocity.x += movementSpeed;
-      }
-
+    if(playerNumber==1){
+      velocity.x += -1*movementSpeed;
     }
-
-
-    //Adds velocity to location
-    location.add(velocity);
-
-    //Adds gravity to velocity, if the player is not already on the ground
-    if(location.y < 800){
-      velocity.add(gravity);
-
     }
-    else{
-      location.y = 800;
-    }
-
-
-    if(A == true){
-      jump();
-    }
-
-    if(B == true){
-      powerAttack();
-    }
-
-    if(X == true){
-      quickAttack();
-    }
-
-    if(Y == true){
-      rangedAttack();
-    }
-
-
- }
-
-void jump(){
-
-  if(location.y > 795){
-    velocity.add(0,-50);
 
   }
-}
+  if(Right == true){
+    if(playerNumber ==1){
+      if(location.x+(fighterWidth*2)<player1.location){
+        velocity.x += -1*movementSpeed;
+      }
+    if(playerNumber==2){
+      velocity.x += -1*movementSpeed;
+    }
 
-void powerAttack(){
+  }
 
 
-}
+  //Adds velocity to location
+  location.add(velocity);
 
-void quickAttack(){
-  rectMode(CENTER);
+  //Adds gravity to velocity, if the player is not already on the ground
+  if(location.y < 800){
+    velocity.add(gravity);
+
+  }
+  else{
+    location.y = 800;
+  }
+
+
+  if(A == true){
+    jump();
+  }
+
+  if(B == true){
+    powerAttack();
+  }
+
+  if(X == true){
+    quickAttack();
+    rectMode(CENTER);
     fill(0,0,100);
     int qAWidth = 100;
     int qAHeight = 20;
@@ -173,6 +148,29 @@ void quickAttack(){
 
       }
     }
+  }
+
+  if(Y == true){
+    rangedAttack();
+  }
+
+
+}
+
+void jump(){
+
+  if(location.y > 795){
+    velocity.add(0,-50);
+
+  }
+}
+
+void powerAttack(){
+
+
+}
+
+void quickAttack(){
 
 }
 
@@ -189,4 +187,6 @@ void rangedAttack(){
     rect(x,y,fighterWidth,fighterHeight);
   }
 
-}
+
+
+ }
