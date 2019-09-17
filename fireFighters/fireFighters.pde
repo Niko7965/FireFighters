@@ -1,9 +1,6 @@
-
-
-
 Fighter player1;
 Fighter player2;
-
+//TEst
 
 void setup(){
   background(255);
@@ -14,10 +11,6 @@ void setup(){
 }
 
 void draw(){
-  
-  
-  
-  
  //Background
  background(255);
  rectMode(CORNER);
@@ -36,5 +29,67 @@ void controlInitialize(){
   if(gpad == null){
     println("No suitable device configured");
     System.exit(-1);
-  } 
+  }
 }
+  void keyPressed(){
+
+
+       if(key =='a' || key =='A'){
+         player2.Left = true;
+         player2.Right = false;
+
+       }
+       if(key =='d' || key =='D'){
+         player2.Left = false;
+         player2.Right = true;
+
+       }
+       if(key =='w' || key =='W'){
+         player2.A = true;
+       }
+       if(key =='j' || key =='J'){
+         player2.X = true;
+       }
+       if(key =='k' || key =='K'){
+         player2.B = true;
+       }
+       if(key =='l' || key =='L'){
+         player2.Y = true;
+       }
+       if(key ==' '){
+         player2.Block = true;
+
+       }
+     }
+   }
+
+   void keyReleased(){
+
+
+
+          if(key =='a' || key =='A'){
+            player2.Left = false;
+
+          }
+          if(key =='d' || key =='D'){
+            player2.Right = false;
+          }
+          if(key =='w' || key =='W'){
+            player2.A = false;
+          }
+          if(key =='j' || key =='J'){
+            player2.X = false;
+          }
+          if(key =='k' || key =='K'){
+            player2.B = false;
+          }
+          if(key =='l' || key =='L'){
+            player2.Y = false;
+          }
+          if(key ==' '){
+            player2.Block = false;
+
+          }
+
+      }
+    }
