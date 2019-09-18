@@ -1,8 +1,14 @@
 Fighter player1;
 Fighter player2;
-//TEst
+
+PImage sprite;
+int counter;
+Animation ani;
+
 
 void setup(){
+  sprite = loadImage("spritesheet_BUTT.png");
+  ani = new Animation(0,50);
   background(255);
   size(1920,1080);
   player1 = new Fighter(200,800,0,200,20,1);
@@ -16,7 +22,8 @@ void draw(){
  rectMode(CORNER);
  fill(120);
  rect(0,900,1920,1080);
-
+ 
+ ani.anidraw();
  player1.playerDraw();
  player2.playerDraw();
 

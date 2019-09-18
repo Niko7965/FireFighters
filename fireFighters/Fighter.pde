@@ -24,7 +24,7 @@ class Fighter{
   PVector location;
   PVector velocity;
 
-  Fighter(float x, float y,float r, float g, float b, int n){
+  Fighter(int x, int y,float r, float g, float b, int n){
     this.r = r;
     this.g = g;
     this.b = b;
@@ -153,11 +153,15 @@ void powerAttack(){
 }
 
 void quickAttack(){
+  
   rectMode(CENTER);
     fill(0,0,100);
     int qAWidth = 100;
     int qAHeight = 20;
-    if(playerNumber == 1){
+    if(playerNumber == 1 && ani.p1DoinIt == false){
+      counter = frameCount;
+      ani.p1Animation = "QuickAttack";
+      
       rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
       if(location.x+2*qAWidth>player2.location.x){
         println("p2 hit");
