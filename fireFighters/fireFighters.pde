@@ -1,18 +1,27 @@
+
 Fighter player1;
 Fighter player2;
 
 PImage sprite;
 int counter;
-Animation ani;
+Animation ani1;
+Animation ani2;
+Sounds sfx;
+static PApplet main;
 
+HUD hud = new HUD();
 
 void setup(){
+  player1 = new Fighter(width/2-500,800,0,200,20,1);
+  player2 = new Fighter(width/2+500,800,200,0,20,2);
+  main=this;
   sprite = loadImage("spritesheet_BUTT.png");
-  ani = new Animation(0,50);
+  ani1 = new Animation(0,50, player1);
+  ani2 = new Animation(0,50, player2);
+  sfx = new Sounds();
   background(255);
   size(1920,1080);
-  player1 = new Fighter(200,800,0,200,20,1);
-  player2 = new Fighter(800,800,200,0,20,2);
+ 
   controlInitialize();
 }
 
@@ -23,9 +32,15 @@ void draw(){
  fill(120);
  rect(0,900,1920,1080);
  
- ani.anidraw();
+
+ 
+ 
+ 
+ ani1.anidraw();
+ ani2.anidraw();
  player1.playerDraw();
  player2.playerDraw();
+ absForLife();
 
 }
 

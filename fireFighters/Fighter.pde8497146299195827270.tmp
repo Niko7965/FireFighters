@@ -36,12 +36,9 @@ class Fighter{
 
 
 void playerDraw(){
-  
-  if(timer>256 && mode == 0){
-    getUserInput();
-    moveCheck();
-  }
-  
+
+  getUserInput();
+  moveCheck();
   display(location.x,location.y,r,g,b);
 
 
@@ -151,8 +148,8 @@ void jump(){
 }
 
 void powerAttack(){
-  if(playerNumber == 1 && ani1.pDoinIt == false){
-    sfx.playSound("Yeetus.wav");
+  if(playerNumber == 1 && ani.p1DoinIt == false){
+    sfx.playSound("Sasuke.wav");
   }
   
 
@@ -164,15 +161,15 @@ void quickAttack(){
     fill(0,0,100);
     int qAWidth = 100;
     int qAHeight = 20;
-    if(playerNumber == 1 && ani1.pDoinIt == false){
+    if(playerNumber == 1 && ani.p1DoinIt == false){
       counter = frameCount;
-      ani1.pAnimation = "QuickAttack";
-      sfx.playSound("Kick1.wav");
+      ani.p1Animation = "QuickAttack";
+      sfx.playSound("Yeetus.wav");
       
       rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
       if(location.x+2*qAWidth>player2.location.x){
         println("p2 hit");
-        lifePlayer2 -= 20;
+        lifePlayer2 -= 10;
         player2.location.x += qAWidth;
       }
 
@@ -181,7 +178,7 @@ void quickAttack(){
       rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
       if(location.x-2*qAWidth<player1.location.x){
         println("p1 hit");
-        lifePlayer1 -= 20;
+        lifePlayer1 -= 10;
         player1.location.x -= qAWidth;
 
       }
@@ -190,7 +187,7 @@ void quickAttack(){
 }
 
 void rangedAttack(){
-  sfx.playSound("Sasuke.wav");
+  sfx.playSound("Kick1.wav");
 }
 
 
