@@ -100,6 +100,7 @@ void announcer(float timer, int mode){
       text("ROUND "+round,width/2,height/2);
       if(round1Done == false){
         sfx.playSound("Round1Fight.wav");
+        //sfx.playSound("FightingThemeV1.wav");
         round1Done = true;
       }
       else{

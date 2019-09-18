@@ -165,7 +165,7 @@ void quickAttack(){
     int qAWidth = 100;
     int qAHeight = 20;
     if(playerNumber == 1 && ani1.pDoinIt == false){
-      counter = frameCount;
+      ani1.counter = frameCount;
       ani1.pAnimation = "QuickAttack";
       sfx.playSound("Kick1.wav");
       
@@ -177,7 +177,10 @@ void quickAttack(){
       }
 
     }
-    if(playerNumber == 2){
+    if(playerNumber == 2 && ani2.pDoinIt == false){
+      ani2.counter = frameCount;
+      ani2.pAnimation = "QuickAttack";
+      sfx.playSound("Kick1.wav");
       rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
       if(location.x-2*qAWidth<player1.location.x){
         println("p1 hit");

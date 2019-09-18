@@ -1,5 +1,5 @@
 import processing.sound.*;
-ArrayList<SoundFile> currentSounds = new ArrayList<SoundFile>();
+
 
 class Sounds{
   
