@@ -13,6 +13,7 @@ ControlDevice gpad;
 
 class Fighter{
   int movementSpeed = 10;
+  int movementSpeedDef= 10;
   int fighterHeight = 240;
   int fighterWidth = 100;
   int hp = 255;
@@ -199,10 +200,10 @@ void rangedAttack(){
 
 
   void display(float x, float y, float r, float g, float b){
-    stroke(0);
-    fill(r,g,b);
-    rectMode(CENTER);
-    rect(x,y,fighterWidth,fighterHeight);
+    //stroke(0);
+    //fill(r,g,b);
+    //rectMode(CENTER);
+    //rect(x,y,fighterWidth,fighterHeight);
   }
 
 }

@@ -2,7 +2,7 @@
 Fighter player1;
 Fighter player2;
 
-PImage sprite;
+
 
 Animation ani1;
 Animation ani2;
