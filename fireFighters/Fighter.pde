@@ -143,24 +143,28 @@ void jump(){
 
   if(location.y > 795){
     velocity.add(0,-50);
-
+  
   }
 }
 
 void powerAttack(){
-
+  if(playerNumber == 1 && ani.p1DoinIt == false){
+    sfx.playSound("Sasuke.wav");
+  }
+  
 
 }
 
 void quickAttack(){
   
-  rectMode(CENTER);
+    rectMode(CENTER);
     fill(0,0,100);
     int qAWidth = 100;
     int qAHeight = 20;
     if(playerNumber == 1 && ani.p1DoinIt == false){
       counter = frameCount;
       ani.p1Animation = "QuickAttack";
+      sfx.playSound("Yeetus.wav");
       
       rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
       if(location.x+2*qAWidth>player2.location.x){
@@ -181,7 +185,7 @@ void quickAttack(){
 }
 
 void rangedAttack(){
-
+  sfx.playSound("Kick1.wav");
 }
 
 

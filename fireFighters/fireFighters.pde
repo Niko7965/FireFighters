@@ -1,14 +1,18 @@
+
 Fighter player1;
 Fighter player2;
 
 PImage sprite;
 int counter;
 Animation ani;
-
+Sounds sfx;
+static PApplet main;
 
 void setup(){
+  main=this;
   sprite = loadImage("spritesheet_BUTT.png");
   ani = new Animation(0,50);
+  sfx = new Sounds();
   background(255);
   size(1920,1080);
   player1 = new Fighter(200,800,0,200,20,1);
