@@ -33,6 +33,10 @@ void draw(){
  fill(120);
  rect(0,900,1920,1080);
  
+ sfx.loopSoundtrack();
+ 
+
+ 
 
  
  

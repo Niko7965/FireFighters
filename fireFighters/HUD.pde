@@ -81,7 +81,7 @@ void announcer(float timer, int mode){
   if (timer >= 0 && timer <= 125){
     text("K.O.",width/2,height/2);
     if(timer < 5){
-      sfx.playSound("KO.wav");
+      sfx.playSound("KO.wav",1);
     }
   }
   
@@ -91,7 +91,8 @@ void announcer(float timer, int mode){
     if (round == 3){
       text("FINAL ROUND",width/2,height/2);
       if(round3Done == false){
-        sfx.playSound("FinalRoundFight.wav");
+        sfx.playSound("FinalRoundFight.wav",1);
+        
         round3Done = true;
       }
       
@@ -99,13 +100,14 @@ void announcer(float timer, int mode){
     } else { 
       text("ROUND "+round,width/2,height/2);
       if(round1Done == false){
-        sfx.playSound("Round1Fight.wav");
-        //sfx.playSound("FightingThemeV1.wav");
+        sfx.playSound("Round1Fight.wav",1);
+        sfx.playSoundtrack(0.1);
+        sfx.musicStarted = true;
         round1Done = true;
       }
       else{
         if(round2Done == false && round==2){
-        sfx.playSound("Round2Fight.wav");
+        sfx.playSound("Round2Fight.wav",1);
         round2Done = true;
       }
       }
@@ -127,7 +129,7 @@ void announcer(float timer, int mode){
     textSize(width/20);
     text("PLAYER 1 WINS",width/2,height/2); 
     if(p1WinDone == false){
-       sfx.playSound("P1Victory.wav");
+       sfx.playSound("P1Victory.wav",1.5);
        p1WinDone = true;
     }
    }
@@ -138,7 +140,7 @@ void announcer(float timer, int mode){
     textSize(width/20);
     text("PLAYER 2 WINS",width/2,height/2); 
     if(p2WinDone == false){
-       sfx.playSound("P2Victory.wav");
+       sfx.playSound("P2Victory.wav",1.5);
        p2WinDone = true;
     }
    }
