@@ -14,6 +14,8 @@ ControlDevice gpad;
 class Fighter{
   int movementSpeed = 10;
   int movementSpeedDef= 10;
+  float backWardsResistance = 0.7;
+  float dmgResistance = 0.7;
   int fighterHeight = 240;
   int fighterWidth = 100;
   int hp = 255;
@@ -24,6 +26,7 @@ class Fighter{
   PVector gravity = new PVector(0,2);
   PVector location;
   PVector velocity;
+  float fighterSoundAmp = 0.2;
 
   Fighter(int x, int y,float r, float g, float b, int n){
     this.r = r;
@@ -70,7 +73,7 @@ public void getUserInput(){
     B = gpad.getButton("P1B").pressed();
     Y = gpad.getButton("P1Y").pressed();
     X = gpad.getButton("P1X").pressed();
-    if (gpad.getSlider("P1R2").getValue() > -0.2){
+    if (gpad.getSlider("P1R2").getValue() < -0.2){
       Block = true;
     }
     else{
@@ -90,10 +93,17 @@ public void moveCheck(){
       if(playerNumber ==2){
         if(location.x-(fighterWidth)>player1.location.x){
           velocity.x += -1*movementSpeed;
+          if(ani2.pDoinIt == false){
+            ani2.pAnimation = "run";
+          }
+          
         }
       }
       if(playerNumber==1){
-          velocity.x += -1*movementSpeed;
+          velocity.x += -1*movementSpeed*backWardsResistance;
+          if(ani1.pDoinIt == false){
+            ani1.pAnimation = "backStp";
+          }
       }
       }
 
@@ -102,10 +112,18 @@ public void moveCheck(){
       if(playerNumber ==1){
         if(location.x+(fighterWidth)<player2.location.x){
           velocity.x += movementSpeed;
+          if(ani1.pDoinIt == false){
+            ani1.pAnimation = "run";
+          }
+          
         }
       }
       if(playerNumber==2){
-        velocity.x += movementSpeed;
+        velocity.x += movementSpeed*backWardsResistance;
+        if(ani2.pDoinIt == false){
+            ani2.pAnimation = "backStp";
+          }
+        
       }
 
     }
@@ -139,9 +157,45 @@ public void moveCheck(){
     if(Y == true){
       rangedAttack();
     }
+    
+     if(Block == true){
+      block();
+    }
+    
+    if(Block == false){
+      if(playerNumber == 1){
+        ani1.pBlocking = false;
+      }
+       if(playerNumber == 2){
+        ani2.pBlocking = false;
+      }
+    }
 
 
  }
+
+
+void block(){
+  if(playerNumber == 1){
+    if(ani1.pDoinIt == false || ani1.pAnimation == "block"){
+      ani1.pBlocking = true;
+      ani1.pAnimation = "block";
+      ani1.pDoinIt = true; 
+      player1.dmgResistance = 0.5;
+      player1.movementSpeed = 0;
+    }
+  }
+  
+  if(playerNumber == 2 || ani2.pAnimation == "block"){
+    if(ani2.pDoinIt == false){
+      ani2.pBlocking = true;
+      ani2.pAnimation = "block";
+      ani2.pDoinIt = true;
+      player2.dmgResistance = 0.5;
+      player2.movementSpeed = 0;
+    }
+  }
+}
 
 void jump(){
 
@@ -153,7 +207,7 @@ void jump(){
 
 void powerAttack(){
   if(playerNumber == 1 && ani1.pDoinIt == false){
-    sfx.playSound("Yeetus.wav");
+    sfx.playSound("Yeetus.wav",fighterSoundAmp);
   }
   
 
@@ -165,27 +219,27 @@ void quickAttack(){
     fill(0,0,100);
     int qAWidth = 100;
     int qAHeight = 20;
-    if(playerNumber == 1 && ani1.pDoinIt == false){
+    if(playerNumber == 1 && ani1.pDoinIt == false && Block != true){
       ani1.counter = frameCount;
       ani1.pAnimation = "QuickAttack";
-      sfx.playSound("Kick1.wav");
+      sfx.playSound("Kick1.wav",fighterSoundAmp);
       
       rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
       if(location.x+2*qAWidth>player2.location.x){
         println("p2 hit");
-        lifePlayer2 -= 20;
+        lifePlayer2 -= 20*player2.dmgResistance;
         player2.location.x += qAWidth;
       }
 
     }
-    if(playerNumber == 2 && ani2.pDoinIt == false){
+    if(playerNumber == 2 && ani2.pDoinIt == false && Block != true){
       ani2.counter = frameCount;
       ani2.pAnimation = "QuickAttack";
-      sfx.playSound("Kick1.wav");
+      sfx.playSound("Kick1.wav",fighterSoundAmp);
       rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
       if(location.x-2*qAWidth<player1.location.x){
         println("p1 hit");
-        lifePlayer1 -= 20;
+        lifePlayer1 -= 20*player1.dmgResistance;
         player1.location.x -= qAWidth;
 
       }
@@ -193,9 +247,10 @@ void quickAttack(){
 
 }
 
-void rangedAttack(){
-  sfx.playSound("Sasuke.wav");
-}
+  void rangedAttack(){
+    sfx.playSound("Sasuke.wav",fighterSoundAmp);
+  }
+  
 
 
 

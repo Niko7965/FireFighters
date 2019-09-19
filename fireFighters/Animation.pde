@@ -18,7 +18,8 @@ class Animation{
   int cSize = 500;
   String pAnimation = "idle";
   boolean pDoinIt = false;
-  PImage sprite;
+  boolean pBlocking = false;
+  PImage sprite; 
   
   Fighter f;
   
@@ -26,7 +27,7 @@ class Animation{
     y = posY;
     x = posX;
     this.f = f;
-    sprite = loadImage("frames/KICKnocolour_0000"+1+".png");
+    sprite = loadImage("frames/"+f.playerNumber+"IDLE"+1+".png");
     sprite.resize(0,cSize);
     getAllFrames();
     counter = frameCount;
@@ -35,7 +36,6 @@ class Animation{
 
 
   void anidraw(){
-    //For player 1
      
     x = round(f.location.x)-w/4;
     y = round(f.location.y)-w/3;
@@ -46,19 +46,33 @@ class Animation{
     }
     if(pAnimation == "idle"){
       idle();
-      
+    }
+    if(pAnimation == "run"){
+      runForward();
+    }
+    if(pAnimation == "backStp"){
+      backStp();
+    }
+     if(pAnimation == "block"){
+      block();
     }
     image(sprite,x,y);
      //Post animation
+     
+     
     if(aniFrames1 < frameCount-counter){
-      pDoinIt = false;
-      pAnimation = "idle";
-      f.movementSpeed=f.movementSpeedDef;
+      if(pBlocking == false){
+        pDoinIt = false;
+        pAnimation = "idle";
+        f.movementSpeed=f.movementSpeedDef;       
+      }
+      
+      
       }
       
       
     
-    
+  
   
   }
   void ranged(){
@@ -70,24 +84,47 @@ class Animation{
     copy(sprite,nx,ny,w,w,x,y,w,w);
   }
   
+  void block(){
+    aniFrames1 = 10;
+    sprite = blockFrames.get(0);
+    f.movementSpeed = 0;
+  }
+  
   void idle(){
     aniFrames1 = 20;
-    if(frameCount-counter<8)   sprite = idleFrames.get(0);
-    if(frameCount-counter==8)  sprite = idleFrames.get(1);
-    if(frameCount-counter==12) sprite = idleFrames.get(2);
-    if(frameCount-counter==16) sprite = idleFrames.get(3);
-    if(frameCount-counter>20) counter = frameCount;;
+    if(frameCount-counter<16)   sprite = idleFrames.get(0);
+    if(frameCount-counter==16)  sprite = idleFrames.get(1);
+    if(frameCount-counter==32) sprite = idleFrames.get(2);
+    if(frameCount-counter==48) sprite = idleFrames.get(3);
+    if(frameCount-counter>64) counter = frameCount;
               
   }
+  
+
   
   void quickAttackAni(){   
     f.movementSpeed =0;
     if(frameCount-counter<8)   sprite = kickFrames.get(0);
     if(frameCount-counter==8)  sprite = kickFrames.get(1);
     if(frameCount-counter==12) sprite = kickFrames.get(2);
-    if(frameCount-counter==12) f.movementSpeed = 10;
-      
-      
+    if(frameCount-counter==12) f.movementSpeed = 10;     
+  }
+  
+  void runForward(){
+    if(frameCount-counter<8)   sprite = runFrames.get(0);
+    if(frameCount-counter==8)  sprite = runFrames.get(1);
+    if(frameCount-counter==12) sprite = runFrames.get(2);
+    if(frameCount-counter==16) sprite = runFrames.get(3);
+    if(frameCount-counter==20) sprite = runFrames.get(4);
+    if(frameCount-counter>25) counter = frameCount;;
+  }
+  
+  void backStp(){
+    if(frameCount-counter<8)   sprite = backStpFrames.get(0);
+    if(frameCount-counter==8)  sprite = backStpFrames.get(1);
+    if(frameCount-counter==12) sprite = backStpFrames.get(2);
+    if(frameCount-counter==16) sprite = backStpFrames.get(3);
+    if(frameCount-counter>25) counter = frameCount;;
   }
   
   void smash(){
@@ -102,23 +139,38 @@ class Animation{
   void getAllFrames(){
     //kicks, 3 frames
     for(int i = 0; i<3; i++){
-     PImage temp = loadImage("frames/KICKnocolour_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"KICK"+i+".png");
      temp.resize(0,cSize);
      kickFrames.add(temp);
     }
     
-    //BackSTP, 4 frames
-    for(int i = 0; i<4; i++){
-     PImage temp = loadImage("frames/BACKSTPnocolour_0000"+i+".png");
-     temp.resize(0,cSize);
-     kickFrames.add(temp);
-    }
     
     //Idle, 4 frames
     for(int i = 0; i<4; i++){
-     PImage temp = loadImage("frames/IDLEnocolur_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"IDLE"+i+".png");
      temp.resize(0,cSize);
      idleFrames.add(temp);
+    }
+    
+    //runForward
+    for(int i = 0; i<6; i++){
+     PImage temp = loadImage("frames/"+f.playerNumber+"RUN"+i+".png");
+     temp.resize(0,cSize);
+     runFrames.add(temp);
+    }
+    
+    //backStep
+    for(int i = 0; i<4; i++){
+     PImage temp = loadImage("frames/"+f.playerNumber+"BACKSTP"+i+".png");
+     temp.resize(0,cSize);
+     backStpFrames.add(temp);
+    }
+    
+    //Block
+    for(int i = 0; i<1; i++){
+     PImage temp = loadImage("frames/"+f.playerNumber+"BLOCK"+i+".png");
+     temp.resize(0,cSize);
+     blockFrames.add(temp);
     }
   }
 }

@@ -33,6 +33,10 @@ void draw(){
  fill(120);
  rect(0,900,1920,1080);
  
+ sfx.loopSoundtrack();
+ 
+
+ 
 
  
  
@@ -43,6 +47,9 @@ void draw(){
  ani1.anidraw();
  ani2.anidraw();
  absForLife();
+ ellipseMode(CENTER);
+ fill(255,0,0);
+ ellipse(player1.location.x,player1.location.y,10,10);
 
 }
 
@@ -82,8 +89,12 @@ void controlInitialize(){
        }
        if(key ==' '){
          player2.Block = true;
-
        }
+       if (key == CODED) {
+            if (keyCode == SHIFT) {
+              player2.Block = true;
+            }
+          }
      }
 
 
@@ -113,6 +124,11 @@ void controlInitialize(){
           if(key ==' '){
             player2.Block = false;
 
+          }
+          if (key == CODED) {
+            if (keyCode == SHIFT) {
+              player2.Block = false;
+            }
           }
 
       }
