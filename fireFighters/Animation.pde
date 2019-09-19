@@ -27,7 +27,7 @@ class Animation{
     y = posY;
     x = posX;
     this.f = f;
-    sprite = loadImage("frames/KICKnocolour_0000"+1+".png");
+    sprite = loadImage("frames/"+f.playerNumber+"IDLE"+1+".png");
     sprite.resize(0,cSize);
     getAllFrames();
     counter = frameCount;
@@ -139,42 +139,36 @@ class Animation{
   void getAllFrames(){
     //kicks, 3 frames
     for(int i = 0; i<3; i++){
-     PImage temp = loadImage("frames/KICKnocolour_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"KICK"+i+".png");
      temp.resize(0,cSize);
      kickFrames.add(temp);
     }
     
-    //BackSTP, 4 frames
-    for(int i = 0; i<4; i++){
-     PImage temp = loadImage("frames/BACKSTPnocolour_0000"+i+".png");
-     temp.resize(0,cSize);
-     kickFrames.add(temp);
-    }
     
     //Idle, 4 frames
     for(int i = 0; i<4; i++){
-     PImage temp = loadImage("frames/IDLEnocolur_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"IDLE"+i+".png");
      temp.resize(0,cSize);
      idleFrames.add(temp);
     }
     
     //runForward
     for(int i = 0; i<6; i++){
-     PImage temp = loadImage("frames/RUNnonolour_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"RUN"+i+".png");
      temp.resize(0,cSize);
      runFrames.add(temp);
     }
     
     //backStep
     for(int i = 0; i<4; i++){
-     PImage temp = loadImage("frames/BACKSTPnocolour_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"BACKSTP"+i+".png");
      temp.resize(0,cSize);
      backStpFrames.add(temp);
     }
     
     //Block
     for(int i = 0; i<1; i++){
-     PImage temp = loadImage("frames/BLOCKnocolour_0000"+i+".png");
+     PImage temp = loadImage("frames/"+f.playerNumber+"BLOCK"+i+".png");
      temp.resize(0,cSize);
      blockFrames.add(temp);
     }
