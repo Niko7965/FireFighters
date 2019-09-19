@@ -47,6 +47,9 @@ class Animation{
     if(pAnimation == "idle"){
       idle();
     }
+    if(pAnimation == "stunned"){
+      idle();
+    }
     if(pAnimation == "run"){
       runForward();
     }
@@ -56,9 +59,14 @@ class Animation{
      if(pAnimation == "block"){
       block();
     }
-    image(sprite,x,y);
-     //Post animation
-     
+    
+    if(f.playerNumber == 1){
+      image(sprite,x-30,y+40);       
+    }
+    
+    if(f.playerNumber == 2){
+      image(sprite,x+30,y+40);       
+    }
      
     if(aniFrames1 < frameCount-counter){
       if(pBlocking == false){
@@ -100,12 +108,26 @@ class Animation{
               
   }
   
+  void stunned(){
+    aniFrames1 = 10000;
+    if(frameCount-counter<10)   sprite = kickFrames.get(0);
+    if(frameCount-counter>1000){
+      pAnimation = "idle";
+      pDoinIt = false;
+      print("hi");
+  }
+              
+  }
+  
 
   
   void quickAttackAni(){   
     f.movementSpeed =0;
     if(frameCount-counter<8)   sprite = kickFrames.get(0);
-    if(frameCount-counter==8)  sprite = kickFrames.get(1);
+    if(frameCount-counter==8){
+      sprite = kickFrames.get(1);
+      f.quickAttackHitbox();
+    }  
     if(frameCount-counter==12) sprite = kickFrames.get(2);
     if(frameCount-counter==12) f.movementSpeed = 10;     
   }

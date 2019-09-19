@@ -42,10 +42,11 @@ void draw(){
  
  
  
- player1.playerDraw();
- player2.playerDraw();
+ 
  ani1.anidraw();
  ani2.anidraw();
+ player1.playerDraw();
+ player2.playerDraw();
  absForLife();
  ellipseMode(CENTER);
  fill(255,0,0);

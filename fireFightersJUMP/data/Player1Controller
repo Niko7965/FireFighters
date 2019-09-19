@@ -1,8 +1,8 @@
 Player1Controller
-P1XStick	Xposition	3	SLIDER	X-akse	0	1.0	0.0
-P1YStick	Yposition	3	SLIDER	Y-akse	0	1.0	0.0
-P1R2	Block	3	SLIDER	Z-akse	0	1.0	0.0
-P1A	Jump	1	BUTTON	Knap 0	0	0.0	0.0
-P1Y	RangedAttack	1	BUTTON	Knap 1	0	0.0	0.0
-P1X	QuickAttack	1	BUTTON	Knap 2	0	0.0	0.0
-P1B	PoweAttack	1	BUTTON	Knap 3	0	0.0	0.0
+P1XStick	Xposition	3	SLIDER	X Axis	0	1.0	0.0
+P1YStick	Yposition	3	SLIDER	Y Axis	0	1.0	0.0
+P1R2	Block	3	SLIDER	Z Axis	0	1.0	0.0
+P1A	Jump	1	BUTTON	Button 0	0	0.0	0.0
+P1Y	RangedAttack	1	BUTTON	Button 3	0	0.0	0.0
+P1X	QuickAttack	1	BUTTON	Button 2	0	0.0	0.0
+P1B	PoweAttack	1	BUTTON	Button 1	0	0.0	0.0

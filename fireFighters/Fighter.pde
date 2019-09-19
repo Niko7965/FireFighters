@@ -12,12 +12,15 @@ ControlDevice gpad;
 
 
 class Fighter{
+  boolean stunned = false;
+  int qAWidth = 200;
+  int qAHeight = 500;
   int movementSpeed = 10;
   int movementSpeedDef= 10;
   float backWardsResistance = 0.7;
   float dmgResistance = 0.7;
-  int fighterHeight = 240;
-  int fighterWidth = 100;
+  int fighterHeight = 350;
+  int fighterWidth = 150;
   int hp = 255;
   float r,g,b;
   int playerNumber;
@@ -131,6 +134,13 @@ public void moveCheck(){
 
     //Adds velocity to location
     location.add(velocity);
+    if(location.x > width){
+      location.x = width;
+    }
+    
+    if(location.x < 0){
+      location.x = 0;
+    }
 
     //Adds gravity to velocity, if the player is not already on the ground
     if(location.y < 800){
@@ -215,37 +225,65 @@ void powerAttack(){
 
 void quickAttack(){
   
-    rectMode(CENTER);
-    fill(0,0,100);
-    int qAWidth = 100;
-    int qAHeight = 20;
-    if(playerNumber == 1 && ani1.pDoinIt == false && Block != true){
+    
+    
+    if(playerNumber == 1 && ani1.pDoinIt == false && Block != true && player1.location.y == 800){
       ani1.counter = frameCount;
       ani1.pAnimation = "QuickAttack";
       sfx.playSound("Kick1.wav",fighterSoundAmp);
-      
+        
+  
+
+    }
+    if(playerNumber == 2 && ani2.pDoinIt == false && Block != true && player2.location.y == 800){
+      ani2.counter = frameCount;
+      ani2.pAnimation = "QuickAttack";
+      sfx.playSound("Kick1.wav",fighterSoundAmp);    
+    }
+}
+
+
+
+  void quickAttackHitbox(){
+    rectMode(CENTER);
+    fill(0,0,100);
+     
+     if(playerNumber == 1 && Block != true && player1.location.y == 800 && player2.Block == false){
       rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
-      if(location.x+2*qAWidth>player2.location.x){
-        println("p2 hit");
+      if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight-fighterHeight<player2.location.y)){        println("p2 hit");
         lifePlayer2 -= 20*player2.dmgResistance;
         player2.location.x += qAWidth;
       }
+     if(playerNumber == 1 && Block != true && player1.location.y == 800 && player2.Block == true){
+       stunned = true;
+       ani1.pAnimation = "stunned";
+       ani1.counter = frameCount;
+       ani1.pDoinIt = true;
+     
+     }
+    
 
     }
-    if(playerNumber == 2 && ani2.pDoinIt == false && Block != true){
-      ani2.counter = frameCount;
-      ani2.pAnimation = "QuickAttack";
-      sfx.playSound("Kick1.wav",fighterSoundAmp);
+    if(playerNumber == 2 && Block != true && player2.location.y == 800 && player1.Block == false){
       rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
-      if(location.x-2*qAWidth<player1.location.x){
+      if((location.x-fighterWidth - qAWidth<player1.location.x)&&(location.y-qAHeight-fighterHeight<player1.location.y)){
         println("p1 hit");
         lifePlayer1 -= 20*player1.dmgResistance;
         player1.location.x -= qAWidth;
 
       }
     }
-
-}
+    if(playerNumber == 2 && Block != true && player2.location.y == 800 && player1.Block == true){
+       stunned = true;
+       ani2.pAnimation = "stunned";
+       ani2.counter = frameCount;
+       ani2.pDoinIt = true;
+     
+     }
+  
+  
+  }
+  
 
   void rangedAttack(){
     sfx.playSound("Sasuke.wav",fighterSoundAmp);
@@ -255,10 +293,10 @@ void quickAttack(){
 
 
   void display(float x, float y, float r, float g, float b){
-    //stroke(0);
-    //fill(r,g,b);
-    //rectMode(CENTER);
-    //rect(x,y,fighterWidth,fighterHeight);
+    stroke(0);
+    fill(r,g,b,30);
+    rectMode(CENTER);
+    rect(x,y,fighterWidth,fighterHeight);
   }
 
 }

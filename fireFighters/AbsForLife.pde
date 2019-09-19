@@ -25,29 +25,7 @@ void absForLife(){
      hud.announcer(timer,mode);
     
     if (timer > 256 && mode == 0){
-    //HealthBar controls
-    if (keyPressed == true) {
-      if (key == CODED) {
-        if (keyCode == RIGHT){
-       
-          
-          lifePlayer2 -= 2;
-          
-          
-       } else { if (keyCode == LEFT){
-          
-          lifePlayer1 -= 2;
-          
-       } else { if (keyCode == DOWN){
-         
-          lifePlayer1 -= 2;
-          lifePlayer2 -= 2;
-          
-          }
-         }
-        }
-       }
-      }
+    
     
     if (lifePlayer1 <= 0 || lifePlayer2 <= 0){
         

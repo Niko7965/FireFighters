@@ -35,7 +35,6 @@ class Sounds{
   
   void loopSoundtrack(){
     if(musicStarted == true){
-     println(soundtrackPlaying);
      soundtrackPlaying = soundTrack.isPlaying();
      if(looping == true){
        soundtrackLoopPlaying = soundTrackLoop.isPlaying();
