@@ -92,11 +92,11 @@ class Animation{
   
   void idle(){
     aniFrames1 = 20;
-    if(frameCount-counter<8)   sprite = idleFrames.get(0);
-    if(frameCount-counter==8)  sprite = idleFrames.get(1);
-    if(frameCount-counter==12) sprite = idleFrames.get(2);
-    if(frameCount-counter==16) sprite = idleFrames.get(3);
-    if(frameCount-counter>20) counter = frameCount;
+    if(frameCount-counter<16)   sprite = idleFrames.get(0);
+    if(frameCount-counter==16)  sprite = idleFrames.get(1);
+    if(frameCount-counter==32) sprite = idleFrames.get(2);
+    if(frameCount-counter==48) sprite = idleFrames.get(3);
+    if(frameCount-counter>64) counter = frameCount;
               
   }
   
