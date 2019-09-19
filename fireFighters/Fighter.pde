@@ -26,6 +26,7 @@ class Fighter{
   PVector gravity = new PVector(0,2);
   PVector location;
   PVector velocity;
+  float fighterSoundAmp = 0.2;
 
   Fighter(int x, int y,float r, float g, float b, int n){
     this.r = r;
@@ -101,7 +102,7 @@ public void moveCheck(){
       if(playerNumber==1){
           velocity.x += -1*movementSpeed*backWardsResistance;
           if(ani1.pDoinIt == false){
-            ani1.pAnimation = "run";
+            ani1.pAnimation = "backStp";
           }
       }
       }
@@ -162,6 +163,12 @@ public void moveCheck(){
     }
     
     if(Block == false){
+      if(playerNumber == 1){
+        ani1.pBlocking = false;
+      }
+       if(playerNumber == 2){
+        ani2.pBlocking = false;
+      }
     }
 
 
@@ -171,15 +178,21 @@ public void moveCheck(){
 void block(){
   if(playerNumber == 1){
     if(ani1.pDoinIt == false || ani1.pAnimation == "block"){
+      ani1.pBlocking = true;
       ani1.pAnimation = "block";
       ani1.pDoinIt = true; 
+      player1.dmgResistance = 0.5;
+      player1.movementSpeed = 0;
     }
   }
   
   if(playerNumber == 2 || ani2.pAnimation == "block"){
     if(ani2.pDoinIt == false){
+      ani2.pBlocking = true;
       ani2.pAnimation = "block";
       ani2.pDoinIt = true;
+      player2.dmgResistance = 0.5;
+      player2.movementSpeed = 0;
     }
   }
 }
@@ -194,7 +207,7 @@ void jump(){
 
 void powerAttack(){
   if(playerNumber == 1 && ani1.pDoinIt == false){
-    sfx.playSound("Yeetus.wav");
+    sfx.playSound("Yeetus.wav",fighterSoundAmp);
   }
   
 
@@ -209,7 +222,7 @@ void quickAttack(){
     if(playerNumber == 1 && ani1.pDoinIt == false && Block != true){
       ani1.counter = frameCount;
       ani1.pAnimation = "QuickAttack";
-      sfx.playSound("Kick1.wav");
+      sfx.playSound("Kick1.wav",fighterSoundAmp);
       
       rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
       if(location.x+2*qAWidth>player2.location.x){
@@ -222,7 +235,7 @@ void quickAttack(){
     if(playerNumber == 2 && ani2.pDoinIt == false && Block != true){
       ani2.counter = frameCount;
       ani2.pAnimation = "QuickAttack";
-      sfx.playSound("Kick1.wav");
+      sfx.playSound("Kick1.wav",fighterSoundAmp);
       rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
       if(location.x-2*qAWidth<player1.location.x){
         println("p1 hit");
@@ -235,7 +248,7 @@ void quickAttack(){
 }
 
   void rangedAttack(){
-    sfx.playSound("Sasuke.wav");
+    sfx.playSound("Sasuke.wav",fighterSoundAmp);
   }
   
 

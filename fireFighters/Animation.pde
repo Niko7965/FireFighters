@@ -18,6 +18,7 @@ class Animation{
   int cSize = 500;
   String pAnimation = "idle";
   boolean pDoinIt = false;
+  boolean pBlocking = false;
   PImage sprite; 
   
   Fighter f;
@@ -60,9 +61,12 @@ class Animation{
      
      
     if(aniFrames1 < frameCount-counter){
-      pDoinIt = false;
-      pAnimation = "idle";
-      f.movementSpeed=f.movementSpeedDef;
+      if(pBlocking == false){
+        pDoinIt = false;
+        pAnimation = "idle";
+        f.movementSpeed=f.movementSpeedDef;       
+      }
+      
       
       }
       
@@ -82,7 +86,8 @@ class Animation{
   
   void block(){
     aniFrames1 = 10;
-    sprite = blockFrames.get(0);              
+    sprite = blockFrames.get(0);
+    f.movementSpeed = 0;
   }
   
   void idle(){
