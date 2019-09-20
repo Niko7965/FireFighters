@@ -9,7 +9,7 @@ static PApplet main;
 HUD hud = new HUD();
 int ballz = 0;
 
-Fireball fireballs[] = new Fireball[12];
+Fireball fireballs[] = new Fireball[42];
 
 
 void setup(){
@@ -44,6 +44,15 @@ void draw(){
   ani2.anidraw();
   player1.playerDraw();
   player2.playerDraw();
+  
+  if(specialPlayer1 > 192){
+   specialPlayer1 = 192;
+  }
+  
+  if(specialPlayer2 > 192){
+   specialPlayer2 = 192;
+  }
+  
   absForLife();
   ellipseMode(CENTER);
   fill(255,0,0);
@@ -94,6 +103,9 @@ void keyPressed(){
    if(key ==' '){
      player2.Block = true;
    }
+   if(key =='s'||key =='S'){
+     player2.Block = true;
+   }
    if (key == CODED) {
      if (keyCode == SHIFT) {
        player2.Block = true;
@@ -122,6 +134,10 @@ void keyReleased(){
     player2.Y = false;
   }
   if(key ==' '){
+    player2.Block = false;
+  }
+  
+  if(key =='s'||key =='S'){
     player2.Block = false;
   }
   if (key == CODED) {

@@ -2,8 +2,8 @@ int victoryPlayer1 = 0;
 int victoryPlayer2 = 0;
 float lifePlayer1 = 256;
 float lifePlayer2 = 256;
-float lifeSpecial1 = 0;
-float lifeSpecial2 = 0;
+float specialPlayer1 = 0;
+float specialPlayer2 = 0;
 
 int round = 1;
 float timer = 156;
@@ -28,6 +28,7 @@ void absForLife(){
   hud.announcer(timer,mode);
   
   if (timer > 256 && mode == 0){
+    
     if (lifePlayer1 <= 0 || lifePlayer2 <= 0){
               
       if (lifePlayer1 <= 0 && lifePlayer2 <= 0){

@@ -222,29 +222,32 @@ class Fighter{
     
     if(playerNumber == 1 && Block != true && player1.location.y == 800){
        //rect(location.x+smashAWidth,location.y,smashAWidth,smashAHeight);
-      if((location.x+smashAWidth+fighterWidth>player2.location.x)&&(location.y-smashAHeight-fighterHeight<player2.location.y)){
+      if((location.x+smashAWidth+fighterWidth>player2.location.x)&&(location.y-smashAHeight/2-fighterHeight/2<player2.location.y)){
         println("p2 hit");
         if(player2.Block == false){
           lifePlayer2 -= smashADmg;
+          specialPlayer2 += smashADmg;
         }
         if(player2.Block == true){
           lifePlayer2 -= smashADmg-(player2.dmgResistance*smashADmg/2);
+          specialPlayer2 += smashADmg-(player2.dmgResistance*smashADmg/2);
         }
         
         player2.location.x += smashAWidth;
         player2.damaged();
       }
     }   
-    //CHANGED: player2 dealt damage to herself instead of player1
     if(playerNumber == 2 && Block != true && player2.location.y == 800){
       //rect(location.x-smashAWidth,location.y,smashAWidth,smashAHeight);
-      if((location.x-fighterWidth-smashAWidth<player1.location.x)&&(location.y-smashAHeight-fighterHeight<player1.location.y)){
+      if((location.x-fighterWidth-smashAWidth<player1.location.x)&&(location.y-smashAHeight/2-fighterHeight/2<player1.location.y)){
         println("p1 hit");
         if(player1.Block == false){
           lifePlayer1 -= smashADmg;
+          specialPlayer1 += smashADmg;
         }
         if(player1.Block == true){
           lifePlayer1 -= smashADmg-(player1.dmgResistance*smashADmg/2);
+          specialPlayer1 += smashADmg-(player1.dmgResistance*smashADmg/2);
         }
         
         player1.location.x -= smashAWidth;
@@ -277,12 +280,12 @@ class Fighter{
       if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player2.location.y)){
         println("p2 hit");
         lifePlayer2 -= qADmg*player2.dmgResistance;
+        specialPlayer2 += qADmg*player2.dmgResistance;
         player2.damaged();
         player2.location.x += qAWidth;
       }
     }
     if(playerNumber == 1 && Block != true && player1.location.y == 800 && player2.Block == true){
-      println("hi");
       if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player2.location.y)){
         stunned = true;
         ani1.pAnimation = "stunned";
@@ -294,9 +297,9 @@ class Fighter{
     if(playerNumber == 2 && Block != true && player2.location.y == 800 && player1.Block == false){
       //rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
       if((location.x-fighterWidth-qAWidth<player1.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player1.location.y)){
-        println("p1 hit");
         player1.damaged();
         lifePlayer1 -= qADmg*player1.dmgResistance;
+        specialPlayer1 += qADmg*player1.dmgResistance;
         player1.location.x -= qAWidth;
       }
     }
@@ -312,14 +315,16 @@ class Fighter{
   
   
   void rangedAttack(){
-    if(playerNumber == 1 && ani1.pDoinIt == false && Block != true && player1.location.y == 800){
+    if(playerNumber == 1 && ani1.pDoinIt == false && Block != true && player1.location.y == 800 && specialPlayer1 >= 32){
+      specialPlayer1 -= 32;
       ani1.counter = frameCount;
       ani1.pAnimation = "RangedAttack";
       ani1.pDoinIt = true;
       sfx.playSound("Sasuke.wav",fighterSoundAmp);
     }
     
-    if(playerNumber == 2 && ani2.pDoinIt == false && Block != true && player2.location.y == 800){
+    if(playerNumber == 2 && ani2.pDoinIt == false && Block != true && player2.location.y == 800 && specialPlayer2 >= 32){
+      specialPlayer2 -= 32;
       ani2.counter = frameCount;
       ani2.pAnimation = "RangedAttack";
       ani2.pDoinIt = true;
@@ -336,16 +341,13 @@ class Fighter{
       fireballs[ballz]= new Fireball(location.x,location.y,1);
       ballz++;
       }
-      
-       /*
-       else {
-       ballz = 0;
-       for (int i=0;i<fireballs.length;i++){
-       fireballs[i]=new Fireball(0,0,0);
-       }
-       }
-       */
-
+    
+    }
+    if(playerNumber == 2 && Block != true && player2.location.y == 800){
+      if(ballz < fireballs.length){
+      fireballs[ballz]= new Fireball(location.x,location.y,2);
+      ballz++;
+      }
      
     }
   }
