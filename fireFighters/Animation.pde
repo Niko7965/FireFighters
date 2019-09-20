@@ -44,11 +44,18 @@ class Animation{
       pDoinIt = true;
       quickAttackAni();
     }
+    
     if(pAnimation == "idle"){
       idle();
     }
+    
+    if(pAnimation == "SmashAttack"){
+      aniFrames1 = 34;
+      pDoinIt = true;
+      smash();
+    }
     if(pAnimation == "stunned"){
-      idle();
+      stunned();
     }
     if(pAnimation == "run"){
       runForward();
@@ -74,9 +81,7 @@ class Animation{
         pAnimation = "idle";
         f.movementSpeed=f.movementSpeedDef;       
       }
-      
-      
-      }
+}
       
       
     
@@ -110,8 +115,10 @@ class Animation{
   
   void stunned(){
     aniFrames1 = 10000;
-    if(frameCount-counter<10)   sprite = kickFrames.get(0);
-    if(frameCount-counter>1000){
+    //if(frameCount-counter<4)       sprite = kickFrames.get(0);
+    if(frameCount-counter < 4)   sprite = kickFrames.get(1); 
+    if(frameCount-counter == 10)   sprite = kickFrames.get(0);
+    if(frameCount-counter>30){
       pAnimation = "idle";
       pDoinIt = false;
       print("hi");
@@ -150,12 +157,12 @@ class Animation{
   }
   
   void smash(){
-    ny=2*w;
-    if(frameCount-counter<8)   nx=1*w;
-    if(frameCount-counter==8)  nx=2*w;
-    if(frameCount-counter==16)  nx=3*w;
-    if(frameCount-counter==24)  nx=0*w;
-    copy(sprite,nx,ny,w,w,x,y,w,w);
+    f.movementSpeed =0;
+    if(frameCount-counter<8)   sprite = smashFrames.get(0);
+    if(frameCount-counter==8)  sprite = smashFrames.get(1);
+    if(frameCount-counter==30) sprite = smashFrames.get(2);
+    if(frameCount-counter==34) f.powerAttackHitbox();
+    if(frameCount-counter==34) sprite = smashFrames.get(3);   
   }
   
   void getAllFrames(){
@@ -193,6 +200,13 @@ class Animation{
      PImage temp = loadImage("frames/"+f.playerNumber+"BLOCK"+i+".png");
      temp.resize(0,cSize);
      blockFrames.add(temp);
+    }
+    
+    //Smash
+    for(int i = 0; i<5; i++){
+     PImage temp = loadImage("frames/"+f.playerNumber+"SMASH"+i+".png");
+     temp.resize(0,cSize);
+     smashFrames.add(temp);
     }
   }
 }
