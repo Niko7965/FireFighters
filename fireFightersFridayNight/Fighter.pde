@@ -272,7 +272,7 @@ class Fighter{
     
     if(playerNumber == 1 && Block != true && player1.location.y == 800 && player2.Block == false){
     //rect(location.x+qAWidth,location.y,qAWidth,qAHeight);
-      if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight-fighterHeight<player2.location.y)){
+      if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player2.location.y)){
         println("p2 hit");
         lifePlayer2 -= qADmg*player2.dmgResistance;
         player2.damaged();
@@ -281,7 +281,7 @@ class Fighter{
     }
     if(playerNumber == 1 && Block != true && player1.location.y == 800 && player2.Block == true){
       println("hi");
-      if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight-fighterHeight<player2.location.y)){
+      if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player2.location.y)){
         stunned = true;
         ani1.pAnimation = "stunned";
         ani1.counter = frameCount;
@@ -291,7 +291,7 @@ class Fighter{
     
     if(playerNumber == 2 && Block != true && player2.location.y == 800 && player1.Block == false){
       //rect(location.x-qAWidth,location.y,qAWidth,qAHeight);
-      if((location.x-fighterWidth-qAWidth<player1.location.x)&&(location.y-qAHeight-fighterHeight<player1.location.y)){
+      if((location.x-fighterWidth-qAWidth<player1.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player1.location.y)){
         println("p1 hit");
         player1.damaged();
         lifePlayer1 -= qADmg*player1.dmgResistance;
@@ -299,7 +299,7 @@ class Fighter{
       }
     }
     if(playerNumber == 2 && Block != true && player2.location.y == 800 && player1.Block == true){
-      if((location.x-fighterWidth - qAWidth<player1.location.x)&&(location.y-qAHeight-fighterHeight<player1.location.y)){
+      if((location.x-fighterWidth - qAWidth<player1.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player1.location.y)){
         stunned = true;
         ani2.pAnimation = "stunned";
         ani2.counter = frameCount;

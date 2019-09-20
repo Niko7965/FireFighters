@@ -18,7 +18,7 @@ void setup(){
   ani2 = new Animation(0,50, player2);
   sfx = new Sounds();
   background(255);
-  size(1600,900);  //pretty much only works in 1080p (1920x1080)
+  size(1920,1080);  //pretty much only works in 1080p (1920x1080)
  
   controlInitialize();
 }
