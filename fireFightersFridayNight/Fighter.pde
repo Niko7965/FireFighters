@@ -6,6 +6,8 @@ ControlIO control;
 Configuration config;
 ControlDevice gpad;
 
+
+
 class Fighter{
   boolean stunned = false;
   int qAWidth = 200;   //what are thooose?
@@ -324,6 +326,34 @@ class Fighter{
       sfx.playSound("Sasuke.wav",fighterSoundAmp);
     }
   }
+  
+  void rangedAttackFireball(){
+    rectMode(CENTER);
+    fill(0,0,100);
+    
+    if(playerNumber == 1 && Block != true && player1.location.y == 800){
+      if(ballz < fireballs.length){
+      fireballs[ballz]= new Fireball(location.x,location.y,1);
+      ballz++;
+      }
+      
+       /*
+       else {
+       ballz = 0;
+       for (int i=0;i<fireballs.length;i++){
+       fireballs[i]=new Fireball(0,0,0);
+       }
+       }
+       */
+
+     
+    }
+  }
+    
+    
+  
+  
+  
 
   void display(float x, float y, float r, float g, float b){
     stroke(0);

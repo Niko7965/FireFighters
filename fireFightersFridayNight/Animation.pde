@@ -6,6 +6,7 @@ class Animation{
   ArrayList<PImage> rangedFrames = new ArrayList<PImage>();
   ArrayList<PImage> smashFrames = new ArrayList<PImage>();
   ArrayList<PImage> blockFrames = new ArrayList<PImage>();
+  ArrayList<PImage> fireballP1Frames = new ArrayList<PImage>();
   
   int counter=0;
   int nx; //x-position to start from spritesheet, defines frame
@@ -91,7 +92,7 @@ class Animation{
     if(frameCount-counter<8)   sprite = rangedFrames.get(0);
     if(frameCount-counter==8)  sprite = rangedFrames.get(1);
     if(frameCount-counter==30) sprite = rangedFrames.get(2);
-    if(frameCount-counter==34) f.quickAttackHitbox(); //has same hitbox as kick
+    if(frameCount-counter==34) f.rangedAttackFireball(); 
     if(frameCount-counter==34) sprite = rangedFrames.get(3); 
   }
   
@@ -206,6 +207,13 @@ class Animation{
      PImage temp = loadImage("frames/"+f.playerNumber+"LOW"+i+".png");
      temp.resize(0,cSize);
      rangedFrames.add(temp);
+    }
+    
+    //Fireball p1
+    for(int i = 0; i<3; i++){
+     PImage temp = loadImage("frames/"+f.playerNumber+"BULLET"+i+".png");
+     temp.resize(0,cSize);
+     fireballP1Frames.add(temp);
     }
   }
 }

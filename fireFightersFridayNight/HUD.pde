@@ -120,7 +120,10 @@ class HUD{
       player2.location.x = width/2+500;
       lifePlayer1 = 256;
       lifePlayer2 = 256;
-      
+      ballz = 0;
+       for (int i=0;i<fireballs.length;i++){
+       fireballs[i]=new Fireball(0,0,0);
+       }
     }
    } 
    

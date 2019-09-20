@@ -7,6 +7,10 @@ Sounds sfx;
 static PApplet main;
 
 HUD hud = new HUD();
+int ballz = 0;
+
+Fireball fireballs[] = new Fireball[12];
+
 
 void setup(){
   frameRate(60);
@@ -21,6 +25,10 @@ void setup(){
   size(1920,1080);  //pretty much only works in 1080p (1920x1080)
  
   controlInitialize();
+  
+  for (int i=0;i<fireballs.length;i++){
+    fireballs[i]= new Fireball(0,0,0);
+  }
 }
 
 void draw(){
@@ -40,6 +48,14 @@ void draw(){
   ellipseMode(CENTER);
   fill(255,0,0);
   ellipse(player1.location.x,player1.location.y,10,10);
+
+  //display fireballs
+  for (int i=0; i<fireballs.length;i++){
+    
+    fireballs[i].update();
+    fireballs[i].display();    
+    
+  }
 
 }
 

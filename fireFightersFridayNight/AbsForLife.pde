@@ -2,6 +2,9 @@ int victoryPlayer1 = 0;
 int victoryPlayer2 = 0;
 float lifePlayer1 = 256;
 float lifePlayer2 = 256;
+float lifeSpecial1 = 0;
+float lifeSpecial2 = 0;
+
 int round = 1;
 float timer = 156;
 int mode =0;
@@ -26,9 +29,10 @@ void absForLife(){
   
   if (timer > 256 && mode == 0){
     if (lifePlayer1 <= 0 || lifePlayer2 <= 0){
-        
+              
       if (lifePlayer1 <= 0 && lifePlayer2 <= 0){
         //basically do nothing if both player's lives are at zero
+        
       }else{
         if (lifePlayer1 <= 0){
           victoryPlayer2 += 1;
@@ -58,8 +62,8 @@ void absForLife(){
      
   } else {   
     if(mode == 0){
-    if(lifePlayer1 < 256){lifePlayer1 += 1;}
-    if(lifePlayer2 < 256){lifePlayer2 += 1;}
+    if(lifePlayer1 < 256){lifePlayer1 += 2;}
+    if(lifePlayer2 < 256){lifePlayer2 += 2;}
     }
   }  
   hud.HealthBar(lifePlayer1,lifePlayer2,victoryPlayer1,victoryPlayer2,round);
