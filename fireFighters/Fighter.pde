@@ -193,7 +193,6 @@ void block(){
   if(playerNumber == 1 ){
     
     if(ani1.pDoinIt == false || ani1.pAnimation == "SmashAttack" || ani1.pAnimation == "block" ){
-      print("hi");
       ani1.pBlocking = true;
       ani1.pAnimation = "block";
       ani1.pDoinIt = true;
@@ -274,10 +273,10 @@ void powerAttackHitbox(){
       if((location.x-fighterWidth - smashAWidth<player1.location.x)&&(location.y-smashAHeight-fighterHeight<player1.location.y)){
         println("p1 hit");
         if(player2.Block == false){
-          lifePlayer2 -= smashADmg;
+          lifePlayer1 -= smashADmg;
         }
         if(player2.Block == true){
-          lifePlayer2 -= smashADmg-(player2.dmgResistance*smashADmg/2);
+          lifePlayer1 -= smashADmg-(player2.dmgResistance*smashADmg/2);
       }
         player1.location.x -= smashAWidth;
         player1.damaged();
@@ -360,7 +359,7 @@ void quickAttack(){
 
 
   void rangedAttack(){
-    sfx.playSound("Sasuke.wav",fighterSoundAmp);
+    //sfx.playSound("Sasuke.wav",fighterSoundAmp);
   }
 
 
