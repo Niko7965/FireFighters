@@ -62,11 +62,12 @@ class HUD{
     fill(170,0,170);
     rect(width*8.5/20-256*width*1/800,height*3.5/20,specialPlayer1,height/20);
     fill(255,0,255,0);
+  
     if(specialPlayer1 >= 192){fill(255,0,255,255);}
     rect((192*5/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
     if(specialPlayer1 >= 160){fill(255,0,255,255);}
     rect((192*4/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
-     if(specialPlayer1 >= 128){fill(255,0,255,255);}
+    if(specialPlayer1 >= 128){fill(255,0,255,255);}
     rect((192*3/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
     if(specialPlayer1 >= 96){fill(255,0,255,255);}
     rect((192*2/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
@@ -74,6 +75,7 @@ class HUD{
     rect((192/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
     if(specialPlayer1 >= 32){fill(255,0,255,255);}
     rect(width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    
     
     fill(100,0,100);
     rect(width*11.5/20+256*width*1/800,height*3.5/20,-194,height/20);
@@ -104,14 +106,7 @@ class HUD{
       text("FINAL",width/2,height*3.5/20);}
     else{ 
       text(round,width/2,height*3.5/20); }
-    /*
-    textAlign(LEFT,CENTER);
-    textSize(width/45);
-    text("Player 1",width*8.5/20-256*width*1/800,height*4/20);
-    textAlign(RIGHT,CENTER);
-    text("Player 2",width*11.5/20+256*width*1/800,height*4/20);
-    */
-   } 
+  }
    
    
   void announcer(float timer, int mode){

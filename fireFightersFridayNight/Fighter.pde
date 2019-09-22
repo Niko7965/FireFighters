@@ -10,9 +10,9 @@ ControlDevice gpad;
 
 class Fighter{
   boolean stunned = false;
-  int qAWidth = 200;   //what are thooose?
-  int qAHeight = 500;  //what are thooose?
-  int qADmg = 40;      //what are thooose?
+  int qAWidth = 200;  
+  int qAHeight = 500;  
+  int qADmg = 40;      
   int smashAWidth = 300;
   int smashAHeight = 400;
   int smashADmg = 70;
@@ -226,11 +226,11 @@ class Fighter{
         println("p2 hit");
         if(player2.Block == false){
           lifePlayer2 -= smashADmg;
-          specialPlayer2 += smashADmg;
+          specialPlayer2 += smashADmg/2;
         }
         if(player2.Block == true){
           lifePlayer2 -= smashADmg-(player2.dmgResistance*smashADmg/2);
-          specialPlayer2 += smashADmg-(player2.dmgResistance*smashADmg/2);
+          specialPlayer2 += (smashADmg-(player2.dmgResistance*smashADmg/2))/2;
         }
         
         player2.location.x += smashAWidth;
@@ -243,11 +243,11 @@ class Fighter{
         println("p1 hit");
         if(player1.Block == false){
           lifePlayer1 -= smashADmg;
-          specialPlayer1 += smashADmg;
+          specialPlayer1 += smashADmg/2;
         }
         if(player1.Block == true){
           lifePlayer1 -= smashADmg-(player1.dmgResistance*smashADmg/2);
-          specialPlayer1 += smashADmg-(player1.dmgResistance*smashADmg/2);
+          specialPlayer1 += (smashADmg-(player1.dmgResistance*smashADmg/2))/2;
         }
         
         player1.location.x -= smashAWidth;
@@ -280,7 +280,7 @@ class Fighter{
       if((location.x+qAWidth+fighterWidth>player2.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player2.location.y)){
         println("p2 hit");
         lifePlayer2 -= qADmg*player2.dmgResistance;
-        specialPlayer2 += qADmg*player2.dmgResistance;
+        specialPlayer2 += (qADmg*player2.dmgResistance)/2;
         player2.damaged();
         player2.location.x += qAWidth;
       }
@@ -299,7 +299,7 @@ class Fighter{
       if((location.x-fighterWidth-qAWidth<player1.location.x)&&(location.y-qAHeight/2-fighterHeight/2<player1.location.y)){
         player1.damaged();
         lifePlayer1 -= qADmg*player1.dmgResistance;
-        specialPlayer1 += qADmg*player1.dmgResistance;
+        specialPlayer1 += (qADmg*player1.dmgResistance)/2;
         player1.location.x -= qAWidth;
       }
     }

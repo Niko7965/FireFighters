@@ -11,6 +11,8 @@ int ballz = 0;
 
 Fireball fireballs[] = new Fireball[42];
 
+PImage projectilePlayer1IMG;
+PImage projectilePlayer2IMG;
 
 void setup(){
   frameRate(60);
@@ -25,6 +27,10 @@ void setup(){
   size(1920,1080);  //pretty much only works in 1080p (1920x1080)
  
   controlInitialize();
+  
+  projectilePlayer1IMG = loadImage("1BULLET2.png");
+  projectilePlayer2IMG = loadImage("2BULLET0.png");
+  
   
   for (int i=0;i<fireballs.length;i++){
     fireballs[i]= new Fireball(0,0,0);
