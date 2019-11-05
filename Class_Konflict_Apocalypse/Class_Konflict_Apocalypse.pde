@@ -17,6 +17,9 @@ PImage projectilePlayer1IMG;
 PImage projectilePlayer2IMG;
 PImage lilleAvIMG;
 PImage storAvIMG;
+PImage baggrundHillsIMG;
+PImage healthBarPlayer1IMG;
+PImage healthBarPlayer2IMG;
 
 void setup(){
   frameRate(60);
@@ -37,6 +40,9 @@ void setup(){
   projectilePlayer2IMG = loadImage("2BULLET0.png");
   lilleAvIMG = loadImage("lilleAv.png");
   storAvIMG = loadImage("av.png");
+  baggrundHillsIMG = loadImage("hills.png");
+  healthBarPlayer1IMG = loadImage("HealthBar1.png");
+  healthBarPlayer2IMG = loadImage("HealthBar2.png");
   
   for (int i=0;i<fireballs.length;i++){
     fireballs[i]= new Fireball(0,0,0);
@@ -48,7 +54,9 @@ void draw(){
   background(255);
   rectMode(CORNER);
   fill(120);
-  rect(0,850,1920,1080);
+  //rect(0,850,1920,1080);
+  imageMode(CORNER);
+  image(baggrundHillsIMG,0,0);
   
   sfx.loopSoundtrack();
    
@@ -90,34 +98,34 @@ void controlInitialize(){
 
 void keyPressed(){
    if(key =='a' || key =='A'){
-     player2.Left = true;
-     player2.Right = false;
+     player1.Left = true;
+     player1.Right = false;
    }
    if(key =='d' || key =='D'){
-     player2.Left = false;
-     player2.Right = true;
+     player1.Left = false;
+     player1.Right = true;
    }
    if(key =='w' || key =='W'){
-     player2.A = true;
+     player1.A = true;
    }
    if(key =='j' || key =='J'){
-     player2.X = true;
+     player1.X = true;
    }
    if(key =='k' || key =='K'){
-     player2.B = true;
+     player1.B = true;
    }
    if(key =='l' || key =='L'){
-     player2.Y = true;
+     player1.Y = true;
    }
    if(key ==' '){
-     player2.Block = true;
+     player1.Block = true;
    }
    if(key =='s'||key =='S'){
-     player2.Block = true;
+     player1.Block = true;
    }
    if (key == CODED) {
      if (keyCode == SHIFT) {
-       player2.Block = true;
+       player1.Block = true;
      }
    }
  }
@@ -125,33 +133,33 @@ void keyPressed(){
 
 void keyReleased(){
   if(key =='a' || key =='A'){
-    player2.Left = false;
+    player1.Left = false;
   }
   if(key =='d' || key =='D'){
-    player2.Right = false;
+    player1.Right = false;
   }
   if(key =='w' || key =='W'){
-    player2.A = false;
+    player1.A = false;
   }
   if(key =='j' || key =='J'){
-    player2.X = false;
+    player1.X = false;
   }
   if(key =='k' || key =='K'){
-    player2.B = false;
+    player1.B = false;
   }
   if(key =='l' || key =='L'){
-    player2.Y = false;
+    player1.Y = false;
   }
   if(key ==' '){
-    player2.Block = false;
+    player1.Block = false;
   }
   
   if(key =='s'||key =='S'){
-    player2.Block = false;
+    player1.Block = false;
   }
   if (key == CODED) {
     if (keyCode == SHIFT) {
-      player2.Block = false;
+      player1.Block = false;
     }
   }
 } 

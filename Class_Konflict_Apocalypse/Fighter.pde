@@ -62,7 +62,7 @@ class Fighter{
   }
 
   public void getUserInput(){
-    if (playerNumber == 1){
+    if (playerNumber == 2){
       
       LeftX = map(gpad.getSlider("P1XStick").getValue(), -1, 1,-10, 10);
       LeftY = map(gpad.getSlider("P1YStick").getValue(), -1, 1,-10, 10);
@@ -173,15 +173,15 @@ class Fighter{
       if(playerNumber == 2){
         ani2.pBlocking = false;
       }
-    }
+     } 
     
-    if(location.y < 800){
+    if(location.y < 800 && Block == false){
     if(velocity.y < 0){
       if(playerNumber == 1){ani1.pAnimation = "ascending";}
       if(playerNumber == 2){ani2.pAnimation = "ascending";}
     }
     
-    if(velocity.y > 0){
+    if((velocity.y > 0 && Block == false)){
       if(playerNumber == 1){ 
       ani1.pAnimation = "descending";
       }

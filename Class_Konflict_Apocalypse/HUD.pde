@@ -5,117 +5,141 @@ class HUD{
   }
 
   void HealthBar(float life1, float life2, int victory1, int victory2, int round){
-  
+    
     //Blue Box
     strokeWeight(2);
     stroke(0);
     rectMode(CORNERS);
     fill(0,0,255);
-    rect(width*8/20-256*width*1/800,height*1.5/20,width*12/20+256*width*1/800,height*5/20); 
+    //rect(width*8/20-256*width*1/800,height*1.5/20,width*12/20+256*width*1/800,height*5/20); 
     
-    //Round Square
-    strokeWeight(8);
-    stroke(#E3E3E3);
-    fill(0);
-    rect(width*9/20,height*1.5/20,width*11/20,height*5/20);
-    
+    //Victory Counter
+    fill(#1A1A1A,112.5);
+    stroke(0);
+    ellipseMode(CORNER);
+    if (victory1 == 2){fill(#FFDF0F);stroke(#FF8000);}
+    ellipse(720.5,280,50,50);
+    if (victory1 == 1){fill(#FFDF0F);stroke(#FF8000);}
+    ellipse(780.5,280,50,50);
+    fill(#1A1A1A,112.5);
+    stroke(0);
+    if (victory2 == 2){fill(#FFDF0F);stroke(#FF8000);}
+    ellipse(1149.5,280,50,50);
+    if (victory2 == 1){fill(#FFDF0F);stroke(#FF8000);}
+    ellipse(1089.5,280,50,50);
     
     //Empty Health Bars
     strokeWeight(2);
     stroke(0);
     rectMode(CORNER);
-    fill(#E3E3E3);
-    rect(width*8.5/20,height*2/20,-256*width/800,height/20);
-    rect(width*11.5/20,height*2/20,256*width/800,height/20);
-    
-    
-    
-    //Victory Counter
-    fill(#E3E3E3);
-    ellipseMode(CENTER);
-    if (victory1 == 2){fill(#FFC400);}
-    ellipse(width*7.3/20,height*4/20,width/30,width/30);
-    if (victory1 == 1){fill(#FFC400);}
-    ellipse(width*8.15/20,height*4/20,width/30,width/30);
-    fill(#E3E3E3);  
-    if (victory2 == 2){fill(#FFC400);}
-    ellipse(width*12.7/20,height*4/20,width/30,width/30);
-    if (victory2 == 1){fill(#FFC400);}
-    ellipse(width*11.85/20,height*4/20,width/30,width/30);
+    fill(#0200AF,112.5);
+    rect(190,130,640,90);
+    rect(1090,130,640,90);
     
     //Health Bar
     rectMode(CORNER);
      if (life1 > 0) {
     if (life1 == 256) {
+      stroke(0,255,0);
       fill(0,255,0);
     }else{
+      stroke(255,life1,0);
       fill(255,life1,0);}
-    rect(width*8.5/20,height*2/20,-life1*width/800,height/20);
+    rect(830,130,-life1*2.5,90);
     }
      if (life2 > 0) {
     if (life2 == 256) {
+      stroke(0,255,0);
       fill(0,255,0);
     }else{
+      stroke(255,life2,0);
       fill(255,life2,0);}
-    rect(width*11.5/20,height*2/20,life2*width/800,height/20);
+    rect(1090,130,life2*2.5,90);
     }
     
     //Tint
     strokeWeight(2);
-    stroke(0);
-    rectMode(CORNER);
+    stroke(#2929FF);
     fill(127.5,127.5,127.5,60);
-    rect(width*8.5/20,height*2/20,-256*width/800,height/20);
-    rect(width*11.5/20,height*2/20,256*width/800,height/20);
-    
+    rectMode(CORNER);
+    rect(190,130,640,90);
+    rect(1090,130,640,90);
     
     //Special bar
+    strokeWeight(2);
+    noStroke();
     fill(100,0,100);
-    rect(width*8.5/20-256*width*1/800,height*3.5/20,194,height/20);
+    rect(522.8,210,307.2,44);
     fill(170,0,170);
-    rect(width*8.5/20-256*width*1/800,height*3.5/20,specialPlayer1,height/20);
-    fill(255,0,255,0);
-  
+    rect(830,210,-specialPlayer1*1.6,44);
+    noFill();
+    
+    stroke(#2929FF);
     if(specialPlayer1 >= 192){fill(255,0,255,255);}
-    rect((192*5/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    rect(830-51.2*5,210,-51.2,44);
     if(specialPlayer1 >= 160){fill(255,0,255,255);}
-    rect((192*4/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    rect(830-51.2*4,210,-51.2,44);
     if(specialPlayer1 >= 128){fill(255,0,255,255);}
-    rect((192*3/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    rect(830-51.2*3,210,-51.2,44);
     if(specialPlayer1 >= 96){fill(255,0,255,255);}
-    rect((192*2/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    rect(830-51.2*2,210,-51.2,44);
     if(specialPlayer1 >= 64){fill(255,0,255,255);}
-    rect((192/6)+width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    rect(830-51.2,210,-51.2,44);
     if(specialPlayer1 >= 32){fill(255,0,255,255);}
-    rect(width*8.5/20-256*width*1/800,height*3.5/20,192/6,height/20);
+    rect(830,210,-51.2,44);
     
-    
+    noStroke();
     fill(100,0,100);
-    rect(width*11.5/20+256*width*1/800,height*3.5/20,-194,height/20);
+    rect(1090,210,307.2,44);
     fill(170,0,170);
-    rect(width*11.5/20+256*width*1/800,height*3.5/20,-specialPlayer2,height/20);
-    fill(255,0,255,0);
+    rect(1090,210,specialPlayer2*1.6,44);
+    noFill();
+    
+    stroke(#2929FF);
     if(specialPlayer2 >= 192){fill(255,0,255,255);}
-    rect((-192*5/6)+width*11.5/20+256*width*1/800,height*3.5/20,-192/6,height/20);
+    rect(1090+51.2*5,210,51.2,44);
     if(specialPlayer2 >= 160){fill(255,0,255,255);}
-    rect((-192*4/6)+width*11.5/20+256*width*1/800,height*3.5/20,-192/6,height/20);
-     if(specialPlayer2 >= 128){fill(255,0,255,255);}
-    rect((-192*3/6)+width*11.5/20+256*width*1/800,height*3.5/20,-192/6,height/20);
+    rect(1090+51.2*4,210,51.2,44);
+    if(specialPlayer2 >= 128){fill(255,0,255,255);}
+    rect(1090+51.2*3,210,51.2,44);
     if(specialPlayer2 >= 96){fill(255,0,255,255);}
-    rect((-192*2/6)+width*11.5/20+256*width*1/800,height*3.5/20,-192/6,height/20);
+    rect(1090+51.2*2,210,51.2,44);
     if(specialPlayer2 >= 64){fill(255,0,255,255);}
-    rect((-192/6)+width*11.5/20+256*width*1/800,height*3.5/20,-192/6,height/20);
+    rect(1090+51.2,210,51.2,44);
     if(specialPlayer2 >= 32){fill(255,0,255,255);}
-    rect(width*11.5/20+256*width*1/800,height*3.5/20,-192/6,height/20);
-    
-    
-    
+    rect(1090,210,51.2,44);
+
+    //Clock
+    rectMode(CORNER);
+    strokeWeight(8);
+    stroke(#CCCCCC);
+    fill(#525252);
+    rect(865,87.5,190,190);
     fill(255);
     textAlign(CENTER,CENTER);
-    textSize(width/45);
-    text("TIME",width/2,height*2.25/20);
-    textSize(width/32);
-      text(timeLeft,width/2,height*3.5/20); 
+    textSize(42);
+    text("TIME",960,121.5);
+    textSize(70);
+    text(timeLeft,960,190); 
+    
+    
+    //Frame
+    imageMode(CORNER);
+    image(healthBarPlayer1IMG,170,95);
+    image(healthBarPlayer2IMG,1070,95);
+    noFill();
+    strokeWeight(3);
+    stroke(#2929FF);
+    rect(1070,95,680,175);
+    rect(170,95,680,175);
+    fill(255);
+    textSize(36);
+    textAlign(RIGHT,CENTER);
+    text("Spiller 2",1730,125);
+    textAlign(LEFT,CENTER);
+    text("Spiller 1",190,125);
+    
+      
   }
    
    

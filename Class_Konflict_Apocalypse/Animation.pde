@@ -9,6 +9,7 @@ class Animation{
   ArrayList<PImage> fireballP1Frames = new ArrayList<PImage>();
   ArrayList<PImage> ascendFrames = new ArrayList<PImage>();
   ArrayList<PImage> descendFrames = new ArrayList<PImage>();
+  ArrayList<PImage> damagedFrames = new ArrayList<PImage>();
   
   int counter=0;
   int nx; //x-position to start from spritesheet, defines frame
@@ -25,6 +26,7 @@ class Animation{
   PImage sprite; 
   PImage ascend;
   PImage descend;
+  PImage damaged;
   
   Fighter f;
   
@@ -78,7 +80,7 @@ class Animation{
       ascend();  
     }
     
-    if(pAnimation == "descending"){  
+    if((pAnimation == "descending")){  
       descend();
     }
     
@@ -157,7 +159,10 @@ class Animation{
       pDoinIt = false;
       f.stunned = false;
       f.movementSpeed = f.movementSpeedDef;
-    }         
+    }
+    
+    
+    
   }
   
   void quickAttackAni(){   
